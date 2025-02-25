@@ -11,4 +11,11 @@ test.describe("Home Page", () => {
       page.getByRole("button", { name: "count is 1" })
     ).toBeVisible();
   });
+
+  test("deletes a user when delete button is clicked", async ({ page }) => {
+    await page.goto("http://localhost:5173/");
+    const deleteButton = page.getByRole("button", { name: "Delete Cory" });
+    await deleteButton.click();
+    await expect(deleteButton).not.toBeVisible();
+  });
 });

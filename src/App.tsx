@@ -1,13 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [users, setUsers] = useState(["Cory", "Bob"]);
 
   return (
     <>
+      <ul>
+        {users.map((user) => (
+          <li key={user}>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setUsers(users.filter((u) => u !== user));
+              }}
+              aria-label={`Delete ${user}`}
+            >
+              Delete
+            </button>
+            {user}
+          </li>
+        ))}
+      </ul>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -29,7 +46,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
